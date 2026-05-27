@@ -1,9 +1,49 @@
+/* ================================
+   VARIÁVEIS CSS (paleta + tipografia + espaçamentos)
+   ================================ */
+:root {
+  --cor-primaria: #f8b4c4;
+  --cor-primaria-hover: #f093ad;
+  --cor-texto: #333;
+  --cor-fundo: #f4f1ea;
+  --cor-card: #ffffff;
+  --cor-titulo: #4a5d45;
+  --cor-link: #d63384;
+  --cor-borda-card: #f8b4c4;
+  --cor-sombra: rgba(0, 0, 0, 0.15);
+  --cor-divisor: #ddd;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.75rem;
+
+  --sp-1: 10px;
+  --sp-2: 20px;
+  --sp-3: 30px;
+}
+
+/* Tema escuro — só sobrescreve variáveis, sem duplicar regras */
+.dark {
+  --cor-texto: #f0f0f0;
+  --cor-fundo: #1e1e1e;
+  --cor-card: #2b2b2b;
+  --cor-titulo: #ffc0cb;
+  --cor-divisor: #444;
+  --cor-sombra: rgba(0, 0, 0, 0.4);
+}
+
+/* ================================
+   BASE
+   ================================ */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f1ea;
-  color: #333;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
   margin: 0;
-  padding: 20px;
+  padding: var(--sp-2);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -11,93 +51,111 @@ body {
   margin: 0 auto;
 }
 
+/* ================================
+   HEADER
+   ================================ */
 .header {
   display: flex;
   align-items: center;
-  gap: 20px;
-
-  background-color: pink;
+  gap: var(--sp-2);
+  background-color: var(--cor-primaria);
   color: white;
-
-  padding: 30px;
-
+  padding: var(--sp-3);
   border-radius: 15px 15px 50px 50px;
-
-  margin-bottom: 30px;
+  margin-bottom: var(--sp-3);
 }
 
 .avatar {
   width: 120px;
   height: 120px;
-
   border-radius: 50%;
   border: 4px solid white;
-
   object-fit: cover;
 }
 
-.grid-container {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 20px;
+.tagline {
+  font-size: var(--fs-sm);
+  margin: 4px 0 12px;
+  opacity: 0.9;
 }
 
+/* ================================
+   GRID
+   ================================ */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+}
+
+/* ================================
+   CARDS
+   ================================ */
 .card {
-  background: white;
-
-  padding: 20px;
-
+  background: var(--cor-card);
+  padding: var(--sp-2);
   border-radius: 12px;
-
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  border-top: 5px solid pink;
+  box-shadow: 0 4px 12px var(--cor-sombra);
+  border-top: 5px solid var(--cor-borda-card);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .full-width {
   grid-column: 1 / span 2;
 }
 
+/* ================================
+   TIPOGRAFIA
+   ================================ */
+h1 {
+  font-size: var(--fs-lg);
+  margin: 0 0 4px;
+}
+
 h2 {
-  color: #4a5d45;
-
+  color: var(--cor-titulo);
+  font-size: var(--fs-md);
   margin-top: 0;
-
-  border-bottom: 1px solid #ddd;
-
-  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cor-divisor);
+  padding-bottom: var(--sp-1);
 }
 
 ul {
-  padding-left: 20px;
+  padding-left: var(--sp-2);
 }
 
 li {
   margin-bottom: 8px;
 }
 
+/* ================================
+   BOTÕES
+   ================================ */
 button {
-  background-color: pink;
-
+  background-color: var(--cor-primaria);
   color: white;
-
   border: none;
-
   padding: 8px 15px;
-
   border-radius: 5px;
-
   cursor: pointer;
+  font-size: var(--fs-sm);
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background-color: #ff8fb1;
+  background-color: var(--cor-primaria-hover);
 }
 
+button:focus-visible {
+  outline: 3px solid var(--cor-link);
+  outline-offset: 2px;
+}
+
+/* ================================
+   LINKS
+   ================================ */
 a {
-  color: #d63384;
+  color: var(--cor-link);
   text-decoration: none;
 }
 
@@ -105,10 +163,89 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Responsividade para celular */
+a:focus-visible {
+  outline: 3px solid var(--cor-link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
+/* ================================
+   FEEDBACK COPIAR EMAIL
+   ================================ */
+#feedback {
+  color: green;
+  font-size: var(--fs-xs);
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ================================
+   ANIMAÇÃO DE ENTRADA (IntersectionObserver)
+   ================================ */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay escalonado entre cards para entrada mais natural */
+.hidden:nth-child(2) { transition-delay: 0.1s; }
+.hidden:nth-child(3) { transition-delay: 0.2s; }
+.hidden:nth-child(4) { transition-delay: 0.3s; }
+.hidden:nth-child(5) { transition-delay: 0.4s; }
+
+/* ================================
+   GALERIA DE FOTOS
+   ================================ */
+.fotos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-top: var(--sp-1);
+}
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+
+.foto-galeria {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: var(--fs-sm);
+  color: var(--cor-titulo);
+}
+
+/* ================================
+   RESPONSIVIDADE — TABLET
+   ================================ */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 var(--sp-2);
+  }
+
+  .grid-container {
+    gap: var(--sp-2);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE — MOBILE
+   ================================ */
 @media (max-width: 600px) {
-
   .grid-container {
     grid-template-columns: 1fr;
   }
@@ -121,38 +258,8 @@ a:hover {
   .full-width {
     grid-column: 1;
   }
-}
-.dark {
-  background-color: #1e1e1e;
-  color: white;
-}
 
-.dark .card {
-  background-color: #2b2b2b;
-  color: white;
-}
-
-.dark .header {
-  background-color: #ff69b4;
-}
-
-.dark h2 {
-  color: #ffc0cb;
-}
-
-.hidden {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#feedback {
-  color: green;
-  font-size: 14px;
-  margin-top: 5px;
+  .fotos-grid {
+    grid-template-columns: 1fr;
+  }
 }
