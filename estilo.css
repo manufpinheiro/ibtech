@@ -1,6 +1,4 @@
-/* ================================
-   VARIÁVEIS CSS (paleta + tipografia + espaçamentos)
-   ================================ */
+
 :root {
   --cor-primaria: #f8b4c4;
   --cor-primaria-hover: #f093ad;
@@ -24,7 +22,7 @@
   --sp-3: 30px;
 }
 
-/* Tema escuro — só sobrescreve variáveis, sem duplicar regras */
+
 .dark {
   --cor-texto: #f0f0f0;
   --cor-fundo: #1e1e1e;
@@ -34,9 +32,7 @@
   --cor-sombra: rgba(0, 0, 0, 0.4);
 }
 
-/* ================================
-   BASE
-   ================================ */
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--cor-fundo);
@@ -51,9 +47,7 @@ body {
   margin: 0 auto;
 }
 
-/* ================================
-   HEADER
-   ================================ */
+
 .header {
   display: flex;
   align-items: center;
@@ -79,18 +73,14 @@ body {
   opacity: 0.9;
 }
 
-/* ================================
-   GRID
-   ================================ */
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-2);
 }
 
-/* ================================
-   CARDS
-   ================================ */
+
 .card {
   background: var(--cor-card);
   padding: var(--sp-2);
@@ -104,9 +94,7 @@ body {
   grid-column: 1 / span 2;
 }
 
-/* ================================
-   TIPOGRAFIA
-   ================================ */
+
 h1 {
   font-size: var(--fs-lg);
   margin: 0 0 4px;
@@ -128,9 +116,7 @@ li {
   margin-bottom: 8px;
 }
 
-/* ================================
-   BOTÕES
-   ================================ */
+
 button {
   background-color: var(--cor-primaria);
   color: white;
@@ -151,9 +137,7 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-/* ================================
-   LINKS
-   ================================ */
+
 a {
   color: var(--cor-link);
   text-decoration: none;
@@ -169,9 +153,7 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-/* ================================
-   FEEDBACK COPIAR EMAIL
-   ================================ */
+
 #feedback {
   color: green;
   font-size: var(--fs-xs);
@@ -179,9 +161,7 @@ a:focus-visible {
   vertical-align: middle;
 }
 
-/* ================================
-   ANIMAÇÃO DE ENTRADA (IntersectionObserver)
-   ================================ */
+
 .hidden {
   opacity: 0;
   transform: translateY(40px);
@@ -193,15 +173,32 @@ a:focus-visible {
   transform: translateY(0);
 }
 
-/* Delay escalonado entre cards para entrada mais natural */
+
 .hidden:nth-child(2) { transition-delay: 0.1s; }
 .hidden:nth-child(3) { transition-delay: 0.2s; }
 .hidden:nth-child(4) { transition-delay: 0.3s; }
 .hidden:nth-child(5) { transition-delay: 0.4s; }
 
-/* ================================
-   GALERIA DE FOTOS
-   ================================ */
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; 
+  height: 0;
+  margin-top: var(--sp-2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+
 .fotos-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -228,9 +225,7 @@ figcaption {
   color: var(--cor-titulo);
 }
 
-/* ================================
-   RESPONSIVIDADE — TABLET
-   ================================ */
+
 @media (max-width: 1024px) {
   .container {
     max-width: 100%;
@@ -242,9 +237,7 @@ figcaption {
   }
 }
 
-/* ================================
-   RESPONSIVIDADE — MOBILE
-   ================================ */
+
 @media (max-width: 600px) {
   .grid-container {
     grid-template-columns: 1fr;
